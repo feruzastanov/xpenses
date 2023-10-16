@@ -1,24 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from "react-native";
-import MainComponent from "./src/components/Main/Main";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+import { Provider as PaperProvider } from "react-native-paper";
+import TabNavigator from "./src/components/Main/Main";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
 	return (
-		<NavigationContainer>
-			<View style={styles.container}>
-				<MainComponent />
-				<StatusBar style="auto" />
-			</View>
-		</NavigationContainer>
+		<SafeAreaProvider>
+			<StatusBar hidden />
+			<PaperProvider>
+				<NavigationContainer>
+					<TabNavigator />
+				</NavigationContainer>
+				<StatusBar />
+			</PaperProvider>
+		</SafeAreaProvider>
 	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+	container: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "center",
+	},
 });
